@@ -3,7 +3,32 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+.buttons > * {
+    border: 3px solid black;
+}
+
 .zero {
     grid-column-start: 1;
     grid-column-end: 3;
+}
+
+.calculator {
+    border: 8px solid rgba(0, 0, 0, 0.575);
+}
+
+.display {
+    border: 5px solid black;
+    background-color: rgb(189, 189, 189);
+}
+
+.blue {
+    background-color: rgb(83, 192, 223);
+}
+
+.orange {
+    background-color: darkorange;
+}
+
+.teal {
+    background-color: rgb(46, 128, 139);
 }
