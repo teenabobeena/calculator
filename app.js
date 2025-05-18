@@ -1,5 +1,5 @@
 let num1 = "";
-// let num2 = "";
+let num2 = "";
 let operator = "";
 let display = "";
 
@@ -12,6 +12,7 @@ function add(first, second) {
     display += sum;
     console.log(display);
     console.log(sum);
+    return sum;
 }
 
 function subtract(first, second) {
@@ -19,6 +20,7 @@ function subtract(first, second) {
     display += minus;
     console.log(display);
     console.log(minus);
+    return minus;
 }
 
 function multiply(first, second) {
@@ -26,6 +28,7 @@ function multiply(first, second) {
     display += product;
     console.log(display);
     console.log(product);
+    return product;
 }
 
 function divide(first, second) {
@@ -33,6 +36,7 @@ function divide(first, second) {
     display += divided;
     console.log(display);
     console.log(divided);
+    return divided;
 }
 
 function operate(num1, operator, num2) {
@@ -54,6 +58,7 @@ let operatorClicked = false;
 const displayPanel = document.querySelector(".display");
 const numberBtns = document.querySelectorAll('.calc-btn');
 const operatorBtns = document.querySelectorAll(".operator-btn");
+const equalBtn = document.querySelector(".equals");
 
 numberBtns.forEach(button => {
     button.addEventListener("click", () => {
@@ -63,6 +68,8 @@ numberBtns.forEach(button => {
         if (operatorClicked) {
             console.log("Number after operator: ", value);
             operatorClicked = false;
+            num2 = value;
+            // console.log(num2);
         }
 
         displayPanel.textContent += value;
@@ -79,3 +86,8 @@ operatorBtns.forEach(button => {
     });
 });
 
+equalBtn.addEventListener("click", () => {
+    let result = operate(Number(num1), operator, Number(num2));
+    console.log(result);
+    displayPanel.textContent = result;
+})
