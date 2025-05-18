@@ -1,6 +1,6 @@
-// let num1 = "";
+let num1 = "";
 // let num2 = "";
-// let operator = "";
+let operator = "";
 let display = "";
 
 
@@ -48,4 +48,34 @@ function operate(num1, operator, num2) {
     }
 }
 
-console.log(operate(first, "-", second));
+// console.log(operate(first, "-", second));
+
+let operatorClicked = false;
+const displayPanel = document.querySelector(".display");
+const numberBtns = document.querySelectorAll('.calc-btn');
+const operatorBtns = document.querySelectorAll(".operator-btn");
+
+numberBtns.forEach(button => {
+    button.addEventListener("click", () => {
+        displayPanel.textContent = "";
+        const value = button.textContent;
+
+        if (operatorClicked) {
+            console.log("Number after operator: ", value);
+            operatorClicked = false;
+        }
+
+        displayPanel.textContent += value;
+        num1 += value;
+    })
+})
+
+operatorBtns.forEach(button => {
+    button.addEventListener("click", () => {
+        const input = button.textContent;
+        console.log("Operator clicked: ", input);
+        operator = input;
+        operatorClicked = true;
+    });
+});
+
