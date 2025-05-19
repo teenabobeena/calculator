@@ -9,7 +9,7 @@ let display = "";
 
 function add(first, second) {
     let sum = first + second;
-    display += sum;
+    display = sum;
     console.log(display);
     console.log(sum);
     return sum;
@@ -17,7 +17,7 @@ function add(first, second) {
 
 function subtract(first, second) {
     let minus = first - second;
-    display += minus;
+    display = minus;
     console.log(display);
     console.log(minus);
     return minus;
@@ -25,7 +25,7 @@ function subtract(first, second) {
 
 function multiply(first, second) {
     let product = first * second;
-    display += product;
+    display = product;
     console.log(display);
     console.log(product);
     return product;
@@ -33,7 +33,7 @@ function multiply(first, second) {
 
 function divide(first, second) {
     let divided = first / second;
-    display += divided;
+    display = divided;
     console.log(display);
     console.log(divided);
     return divided;
@@ -59,23 +59,22 @@ const displayPanel = document.querySelector(".display");
 const numberBtns = document.querySelectorAll('.calc-btn');
 const operatorBtns = document.querySelectorAll(".operator-btn");
 const equalBtn = document.querySelector(".equals");
+const clearBtn = document.querySelector(".clear");
 
 numberBtns.forEach(button => {
     button.addEventListener("click", () => {
         displayPanel.textContent = "";
         const value = button.textContent;
 
-        if (operatorClicked) {
-            console.log("Number after operator: ", value);
-            operatorClicked = false;
-            num2 = value;
-            // console.log(num2);
+        if (!operatorClicked) {
+            num1 += value;
+            displayPanel.textContent = num1;
+        } else {
+            num2 += value;
+            displayPanel.textContent = num2;
         }
-
-        displayPanel.textContent += value;
-        num1 += value;
-    })
-})
+    });
+});
 
 operatorBtns.forEach(button => {
     button.addEventListener("click", () => {
@@ -87,7 +86,24 @@ operatorBtns.forEach(button => {
 });
 
 equalBtn.addEventListener("click", () => {
+    console.log("num1: ", num1);
+    console.log("num2: ", num2);
+    console.log("operator: ", operator);
+
     let result = operate(Number(num1), operator, Number(num2));
     console.log(result);
     displayPanel.textContent = result;
+
+    num1 = result.toString();
+    num2 = "";
+    operator = "";
+    operatorClicked = false;
+})
+
+clearBtn.addEventListener("click", () => {
+    displayPanel.textContent = "0";
+    num1 = "";
+    console.log("Num1 is now: ", num1);
+    console.log("Num2 is now: ", num2);
+    console.log(operator);
 })
