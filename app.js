@@ -62,6 +62,7 @@ const operatorBtns = document.querySelectorAll(".operator-btn");
 const equalBtn = document.querySelector(".equals");
 const clearBtn = document.querySelector(".clear");
 const negativeBtn = document.querySelector(".negative");
+const dotBtn = document.querySelector(".dot");
 
 numberBtns.forEach(button => {
     button.addEventListener("click", () => {
@@ -118,6 +119,17 @@ negativeBtn.addEventListener("click", () => {
         console.log(num1);
     } else {
         num2 *= -1;
+        displayPanel.textContent = num2;
+    }
+})
+
+dotBtn.addEventListener("click", () => {
+    if (!num2) {
+        num1 = num1 + ".";
+        displayPanel.textContent = num1;
+        console.log(num1);
+    } else {
+        num2 = num2 + ".";
         displayPanel.textContent = num2;
     }
 })
