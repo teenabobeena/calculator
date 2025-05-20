@@ -32,6 +32,7 @@ function multiply(first, second) {
 }
 
 function divide(first, second) {
+
     let divided = first / second;
     display = divided;
     console.log(display);
@@ -60,6 +61,7 @@ const numberBtns = document.querySelectorAll('.calc-btn');
 const operatorBtns = document.querySelectorAll(".operator-btn");
 const equalBtn = document.querySelector(".equals");
 const clearBtn = document.querySelector(".clear");
+const negativeBtn = document.querySelector(".negative");
 
 numberBtns.forEach(button => {
     button.addEventListener("click", () => {
@@ -90,11 +92,11 @@ equalBtn.addEventListener("click", () => {
     console.log("num2: ", num2);
     console.log("operator: ", operator);
 
-    let result = operate(Number(num1), operator, Number(num2));
+    let result = parseFloat(operate(Number(num1), operator, Number(num2)).toFixed(1));
     console.log(result);
     displayPanel.textContent = result;
 
-    num1 = result.toString();
+    num1 = "";
     num2 = "";
     operator = "";
     operatorClicked = false;
@@ -103,7 +105,19 @@ equalBtn.addEventListener("click", () => {
 clearBtn.addEventListener("click", () => {
     displayPanel.textContent = "0";
     num1 = "";
+    num2 = "";
     console.log("Num1 is now: ", num1);
     console.log("Num2 is now: ", num2);
     console.log(operator);
+})
+
+negativeBtn.addEventListener("click", () => {
+    if (!num2) {
+        num1 *= -1;
+        displayPanel.textContent = num1;
+        console.log(num1);
+    } else {
+        num2 *= -1;
+        displayPanel.textContent = num2;
+    }
 })
