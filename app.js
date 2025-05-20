@@ -3,40 +3,32 @@ let num2 = "";
 let operator = "";
 let display = "";
 
-
-//let first = parseInt(prompt("first number"));
-//let second = parseInt(prompt("second number"));
-
 function add(first, second) {
     let sum = first + second;
     display = sum;
-    console.log(display);
-    console.log(sum);
     return sum;
 }
 
 function subtract(first, second) {
     let minus = first - second;
     display = minus;
-    console.log(display);
-    console.log(minus);
     return minus;
 }
 
 function multiply(first, second) {
     let product = first * second;
     display = product;
-    console.log(display);
-    console.log(product);
     return product;
 }
 
 function divide(first, second) {
+    if (second === 0) {
+        displayPanel.textContent = "really bro";
+        return NaN;
+    }
 
     let divided = first / second;
     display = divided;
-    console.log(display);
-    console.log(divided);
     return divided;
 }
 
@@ -52,8 +44,6 @@ function operate(num1, operator, num2) {
             return divide(num1, num2);
     }
 }
-
-// console.log(operate(first, "-", second));
 
 let operatorClicked = false;
 const displayPanel = document.querySelector(".display");
@@ -95,7 +85,6 @@ equalBtn.addEventListener("click", () => {
     console.log("operator: ", operator);
 
     let result = parseFloat(operate(Number(num1), operator, Number(num2)).toFixed(1));
-    console.log(result);
     displayPanel.textContent = result;
 
     num1 = "";
@@ -108,16 +97,12 @@ clearBtn.addEventListener("click", () => {
     displayPanel.textContent = "0";
     num1 = "";
     num2 = "";
-    console.log("Num1 is now: ", num1);
-    console.log("Num2 is now: ", num2);
-    console.log(operator);
 })
 
 negativeBtn.addEventListener("click", () => {
     if (!num2) {
         num1 *= -1;
         displayPanel.textContent = num1;
-        console.log(num1);
     } else {
         num2 *= -1;
         displayPanel.textContent = num2;
@@ -142,4 +127,4 @@ percentBtn.addEventListener("click", () => {
         num2 /= 100;
         displayPanel.textContent = num2;
     }
-})
+});
